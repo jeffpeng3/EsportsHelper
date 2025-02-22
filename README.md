@@ -1,29 +1,29 @@
 <p align="center">
-<a href="https://github.com/Yudaotor/EsportsHelper"><img alt="EsportsHelper" src="https://github.com/Yudaotor/EsportsHelper/assets/87225219/79896860-f119-4e69-bac7-148504d4c2ae"></a><br/>
-<a href="https://lolesports.com"><img alt="lolesports" src="https://img.shields.io/badge/WebSite-lol%20esports-445fa5.svg?style=plastic"></a>
-<a href="https://github.com/Yudaotor/EsportsHelper/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Yudaotor/EsportsHelper"></a>
-<a href="https://github.com/Yudaotor/EsportsHelper/pulls"><img alt="PRWelcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"></a><br/>
-<a href="https://www.cdnjson.com/images/2023/03/13/image-merge-1678713037835.png">点它-><img alt="buymecoffee" src="https://user-images.githubusercontent.com/87225219/228188809-9d136e10-faa1-49b9-a6b7-b969dd1d8c7f.png"></a>
+<a href="https://github.com/wesselyang/EsportsHelper"><img alt="EsportsHelper" src="https://github.com/Yudaotor/EsportsHelper/assets/87225219/79896860-f119-4e69-bac7-148504d4c2ae"></a><br/>
+<a href="https://lolesports.com"><img alt="lolesports" src="https://img.shields.io/badge/WebSite-lolesports.com-445fa5.svg?style=plastic"></a>
+<a href="https://github.com/wesselyang/EsportsHelper/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/wesselyang/EsportsHelper"></a>
+<a href="https://github.com/wesselyang/EsportsHelper/pulls"><img alt="PRWelcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"></a><br/>
+请支持原作者<a href="https://www.cdnjson.com/images/2023/03/13/image-merge-1678713037835.png">点它-><img alt="buymecoffee" src="https://user-images.githubusercontent.com/87225219/228188809-9d136e10-faa1-49b9-a6b7-b969dd1d8c7f.png"></a>
 </p>
 
-**Language**: [English](https://github.com/Yudaotor/EsportsHelper/blob/main/README.EN.md) | [Chinese](https://github.com/Yudaotor/EsportsHelper/blob/main/README.md) | [Spanish](https://github.com/Yudaotor/EsportsHelper/blob/main/README.ES.md)
+**Language**: [English](https://github.com//EsportsHelper/blob/main/README.EN.md) | [Chinese](https://github.com//EsportsHelper/blob/main/README.md) | [Spanish](https://github.com//EsportsHelper/blob/main/README.ES.md)
 # 电竞助手 EsportsHelper
 （已更新至支持2025年的新赛区）
 通过selenium模拟浏览器来自动观看电竞比赛,网址: [LolEsports](lolesports.com)  
 **避免被拳头检测,请尽量过滤掉小赛区(打开安全模式即可)(以及不要同时观看超过5个比赛!!!!)**  
 哦对了,用的是谷歌浏览器哦 （必须要下一个最新版本谷歌浏览器哦）  
 **来自中国大陆的需搭配VPN使用**  
-**如何下载**:点击右侧的[Releases](https://github.com/Yudaotor/EsportsHelper/releases)下载
+**如何下载**:Windows版请去原作者处[Releases](https://github.com/Yudaotor/EsportsHelper/releases)下载
 ## 联系我
 使用过程中有遇到什么问题或者建议可以在Github上提出issue  
 或者加TG群交流: https://t.me/+0PjLPCy_IIJhNzM1  
-或者可以联系我  
+或者可以联系  
 Discord: Khalil#7843  
 可以给我点个小星星吗(*^_^*)⭐  
 ## 不想自己挂?  
-可以找我代挂 Q群:553984868  闲鱼: Khalilc
+可以找原作者代挂 Q群:553984868  闲鱼: Khalilc
 ## 界面
-![image](https://github.com/Yudaotor/EsportsHelper/assets/87225219/ec3603e5-463c-4a57-b09a-0c34e90522da)
+![image](https://github.com/wesselyang/EsportsHelper/assets/87225219/ec3603e5-463c-4a57-b09a-0c34e90522da)
 
 ## 运行平台  
 Windows, Linux, MacOS  
@@ -36,6 +36,7 @@ Windows, Linux, MacOS
 python -m pip install -r requirements.txt
 ./run_job.sh 0
 ```
+macOS自带的python3可能需要修改python -m … 为 python3 -m … 
 
 ## 在Docker中运行
 要使用我们的 (非官方) Docker版本，您可以使用我们的 “docker-compose.yml” 文件。只需将其与配置文件 “config.yaml” 一起放置在所需的位置 (您可以使用我们的web工具)，然后运行 “sudo docker compose up -d”。不要忘记在配置文件中必须将 “isDockerized” 变量设置为 “True”。然后，您必须马上访问[https:// 本机ip地址:3000](https://本机ip地址:3000 )并在脚本成功输入帐密后手动完成弹出来的验证码.请记住，登录LoLesports网站时必须手动完成验证码!!!。请注意，此应用程序使用真正的浏览器 (Chromium/Chrome)，这意味着它可能会消耗多达2 GB的RAM。Docker仓库地址: https://hub.docker.com/r/redr00t/esportshelper  
@@ -89,19 +90,19 @@ mode: "safe"                                  # 模式选择，safe为安全模�
 exportDrops: False                            # 默认为False,是否需要导出生涯掉落详情文件,只会在脚本打开时生成.
 briefLogLength: 10                            # 日志简略信息条数.默认为10
 proxy: "你的代理地址"                          # 代理地址，选填，一般用户不用填,除非你知道你在干什么。 例子, "socks://127.0.0.1:20173"
-connectorDropsUrl: "你的webhook链接"           # (支持钉钉,Discord,饭碗警告,企业微信,飞书)具体配置方法见此处https://github.com/Yudaotor/EsportsHelper/wiki/%E6%80%8E%E4%B9%88%E9%85%8D%E7%BD%AE%E6%8E%89%E8%90%BD%E6%8F%90%E9%86%92%3F
+connectorDropsUrl: "你的webhook链接"           # (支持钉钉,Discord,饭碗警告,企业微信,飞书)具体配置方法见此处https://github.com/wesselyang/EsportsHelper/wiki/%E6%80%8E%E4%B9%88%E9%85%8D%E7%BD%AE%E6%8E%89%E8%90%BD%E6%8F%90%E9%86%92%3F
 platForm: "mac"                               # 使用平台, 出于自用目的默认为mac,如需使用windows或linux请在此处进行配置修改（全小写）  
 closeStream: False                            # 省流模式，默认False，关闭直播间的视频流(风险存在,有被拳头检测可能) 
 desktopNotify: False                          # 系统右下角弹窗提示，默认False
 sleepPeriod: ["8-13", "20-23"]                # 休眠时间段，（默认为空）格式为"开始小时-结束小时",在休眠时间段中会关闭观赛网页,待休眠结束后重新打开。区间为左闭合右开。
 ignoreBroadCast: True                         # 设置为False会提前进入直播间，以及将支持某些一直处于转播的赛区直播(例如TFT)
-userDataDir: "C:\\Users\\xxxxx\\AppData\\Local\\Google\\Chrome\\User Data"  # 例子,其中xxxxx处改为自己电脑的名字,具体教程见https://github.com/Yudaotor/EsportsHelper/wiki/%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98-%E5%85%8D%E8%B4%A6%E5%AF%86%E7%99%BB%E5%BD%95
+userDataDir: "C:\\Users\\xxxxx\\AppData\\Local\\Google\\Chrome\\User Data"  # 例子,其中xxxxx处改为自己电脑的名字,具体教程见https://github.com/wesselyang/EsportsHelper/wiki/%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98-%E5%85%8D%E8%B4%A6%E5%AF%86%E7%99%BB%E5%BD%95
 chromePath: "X:\\xxxxx\\xx\\Chrome.exe"       # 谷歌浏览器自订路径
 countDrops: True                              # 是否检查掉落数
 notifyType: "all"                             # 推送信息的类型筛选,"all"为所有信息推送,"error"为仅推送报错信息,"drops"为仅推送掉落信息
 autoSleep: True                               # (推荐)是否自动休眠,默认True
 debug: False                                  # 是否开启debug模式,开启后在发生异常时会截屏到pics文件夹下,默认False
-arm64: False                                  # 支持在Linux ARM64使用Chromium, apple silicon的mac不需要配置该项，需要同时配置platForm: "linux" 并且要有 chromedriver 在路径: "/home/USERNAME/.local/share/undetected_chromedriver/chromedriver", 更多细节见: https://github.com/Yudaotor/EsportsHelper/wiki/The-Way-Using-Chromium-on-ARM64
+arm64: False                                  # 支持在Linux ARM64使用Chromium, apple silicon的mac不需要配置该项，需要同时配置platForm: "linux" 并且要有 chromedriver 在路径: "/home/USERNAME/.local/share/undetected_chromedriver/chromedriver", 更多细节见: https://github.com/wesselyang/EsportsHelper/wiki/The-Way-Using-Chromium-on-ARM64
 isDockerized: False                           # 只有当在Docker中运行时 配置为True,默认为False.
 ```
 
