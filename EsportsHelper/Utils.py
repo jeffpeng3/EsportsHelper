@@ -59,7 +59,7 @@ def getGithubFile():
                    'Connection': 'close'}
         try:
             remoteGithubFile = req.get(
-                "https://raw.githubusercontent.com/Yudaotor/EsportsHelper/main/override.txt", headers=headers)
+                "https://raw.githubusercontent.com/wesselyang/EsportsHelper/main/override.txt", headers=headers)
         except Exception:
             log.error(_log("从Github获取参数文件失败, 将尝试从Gitee获取"))
             remoteGithubFile = req.get(
@@ -786,20 +786,16 @@ def formatLeagueName(name):
     str: The formatted league name.
 
     """
-    if "LJL-JAPAN" == name:
-        name = "LJL"
-    elif "LCK_CHALLENGERS_LEAGUE" == name:
-        name = "LCK_CL"
-    elif "NORTH_AMERICAN_CHALLENGER_LEAGUE" == name:
-        name = "LCS_CL"
-    elif "CBLOL-BRAZIL" == name:
-        name = "CBLOL"
-    elif "EMEA" in name:
-        name = "EMEA"
+    if "LTA_S" == name:
+        name = "LTAS"
+    elif "LTA_N" == name:
+        name = "LTAN"
+    elif "LTA_CROSS" == name:
+        name = "LTAX"
+    elif "FIRST_STAND" == name:
+        name = "FS"
     elif "TFT" in name:
         name = "TFT"
-    elif "LCS_CHALLENGERS_QUALIFIERS" == name:
-        name = "LCS_CLQ"
     return name
 
 
