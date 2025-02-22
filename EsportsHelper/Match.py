@@ -282,7 +282,7 @@ class Match:
                     liveList = tempList
                 if config.onlyWatchMatches:
                     liveList = sortLiveList(liveList, config.onlyWatchMatches)
-                safeModeMatches = ["worlds", "msi", "lcs", "lec", "lla", "vcs", "pcs", "lpl", "lck", "ljl-japan", "lco", "cblol-brazil", "tft_esports", "emea_masters"]
+                safeModeMatches = ["worlds", "msi", "lcp", "lec", "lck", "lta_s", "lta_n", "lta_cross", "tft_esports", "first_stand"]
                 if config.mode == "safe":
                     liveList = sortLiveList(liveList, safeModeMatches)
                 liveUrlList = []
@@ -490,7 +490,7 @@ class Match:
             disWatchMatchesSet = set(config.disWatchMatches)
             onlyWatchMatchesSet = set(config.onlyWatchMatches)
             if config.mode == "safe":
-                safeList = ["worlds", "msi", "lcs", "lec", "lla", "vcs", "pcs", "lpl", "lck", "ljl-japan", "lco", "cblol-brazil", "tft_esports", "emea_masters"]
+                safeList = ["worlds", "msi", "lcp", "lec", "lpl", "lck", "lta_s", "lta_n", "lta_cross", "tft_esports", "first_stand"]
                 onlyWatchMatchesSet = set(safeList)
             elif config.mode == "normal":
                 pass

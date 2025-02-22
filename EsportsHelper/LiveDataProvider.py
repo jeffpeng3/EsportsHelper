@@ -151,7 +151,7 @@ def fetchLiveMatches(ignoreBroadCast=True, ignoreDisWatchMatches=False):
         liveList = []
         watchList = []
         if config.mode == "safe":
-            watchList = ["worlds", "msi", "lcs", "lec", "lla", "vcs", "pcs", "lpl", "lck", "ljl-japan", "lco", "cblol-brazil", "tft_esports", "emea_masters"]
+            watchList = ["worlds", "msi", "lcp", "lec", "lck", "lta_s", "lta_n", "lta_cross", "tft_esports", "first_stand"]
         elif config.onlyWatchMatches != [] and config.onlyWatchMatches != [""]:
             watchList = config.onlyWatchMatches
         for event in events:
@@ -230,7 +230,7 @@ def checkNextMatch():
         getScheduleUrl = "https://esports-api.lolesports.com/persisted/gw/getSchedule?hl=en-GB"
         if config.mode == "safe":
             getScheduleUrl = "https://esports-api.lolesports.com/persisted/gw/getSchedule?hl=en-US&leagueId=98767991299243165%2C98767991332355509%2C98767991310872058%2C105709090213554609%2C98767991302996019%2C98767991349978712%2C101382741235120470%2C98767991314006698%2C104366947889790212%2C107213827295848783%2C110988878756156222%2C98767991325878492%2C98767975604431411%2C98767991295297326%2C100695891328981122%2C105266094998946936%2C108001239847565215"
-            watchList = ["worlds", "msi", "lcs", "lec", "lla", "vcs", "pcs", "lpl", "lck", "ljl-japan", "lco", "cblol-brazil", "tft_esports", "emea_masters"]
+            watchList = ["worlds", "msi", "lcp", "lec", "lck", "lta_s", "lta_n", "lta_cross", "tft_esports", "first_stand"]
         elif config.onlyWatchMatches != [] and config.onlyWatchMatches != [""]:
             watchList = config.onlyWatchMatches
         res = client.get(getScheduleUrl, headers=headers)
