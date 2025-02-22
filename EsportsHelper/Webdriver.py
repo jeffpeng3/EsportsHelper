@@ -118,7 +118,7 @@ def addWebdriverOptions(options):
             userAgent = linuxAgent
         else:
             # Default to one agent, just in case
-            userAgent = windowsAgent
+            userAgent = macAgent
 
         options.add_argument(f'user-agent={userAgent}')
     return options
@@ -136,7 +136,7 @@ def createWebdriver():
     if config.isDockerized:
         driverPath = "/undetected_chromedriver/chromedriver"
     else:
-        if config.platForm == "linux":
+        if config.platForm in ["linux", "mac"]:
             if config.arm64:
                 username = os.getlogin()
                 driverPath = f"/home/{username}/.local/share/undetected_chromedriver/chromedriver"
@@ -147,7 +147,7 @@ def createWebdriver():
                 customPath = "driver"
                 chromeDriverManager = ChromeDriverManager(cache_manager=DriverCacheManager(customPath))
                 driverPath = chromeDriverManager.install()
-        elif config.platForm == "windows":
+        elif config.platForm in ["windows", "mac"]:
             driverPath = chromeDriverManager.install()
         else:
             log.error(_("不支持的操作系统"))

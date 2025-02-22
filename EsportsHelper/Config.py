@@ -76,7 +76,7 @@ class Config:
             self.disWatchMatches = configFile.get("disWatchMatches", [])
             self.connectorDropsUrl = configFile.get("connectorDropsUrl", "")
             self.connectorTest = configFile.get("connectorTest", False)
-            self.platForm = configFile.get("platForm", "windows")
+            self.platForm = configFile.get("platForm", "mac")
             self.debug = configFile.get("debug", False)
             self.proxy = configFile.get("proxy", "")
             self.desktopNotify = configFile.get("desktopNotify", False)
@@ -172,11 +172,11 @@ class Config:
                 self.delay = 600
 
         if not isinstance(self.platForm, str):
-            self.platForm = "windows"
+            self.platForm = "mac"
         else:
             self.platForm = self.platForm.lower()
-            if self.platForm not in ["windows", "linux"]:
-                self.platForm = "windows"
+            if self.platForm not in ["windows", "linux", "mac"]:
+                self.platForm = "mac"
 
         if self.sleepPeriod != [""]:
             if isinstance(self.sleepPeriod, list):
