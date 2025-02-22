@@ -25,9 +25,8 @@ Discord: Khalil#7843
 ## 界面
 ![image](https://github.com/Yudaotor/EsportsHelper/assets/87225219/ec3603e5-463c-4a57-b09a-0c34e90522da)
 
-
 ## 运行平台  
-Windows, Linux  
+Windows, Linux, MacOS  
 
 ### Linux  
 如何在Linux中运行请点击右侧查看教程[Linux教程](https://github.com/Yudaotor/EsportsHelper/wiki/%E5%A6%82%E4%BD%95%E5%9C%A8linux%E7%8E%AF%E5%A2%83%E8%BF%90%E8%A1%8C%EF%BC%88run-in-linux%EF%BC%89)
@@ -46,7 +45,7 @@ python -m pip install -r requirements.txt
 
 
 ## 特性
-1. 自动打开浏览器,进入lolesports.com,查询哪些赛区在进行比赛(在放赛前等待的赛区会被忽视,但是可以通过ignoreBroadCast配置从而不忽视),进入观看并设置为最低清晰度(为了节省流量)
+1. 自动打开浏览器,进入lolesports.com,查询哪些赛区在进行比赛(在放赛前等待的赛区会被忽视,但是可以通过ignoreBroadCast配置从而不忽视),进入观看并设置为最低清晰度(节省流量)
 2. 可以自行设置是否选择无头模式(默认关闭)(无头模式即headless,开启后浏览器会不可见,在后台运行,缓解电脑CPU压力)
 3. 可以自行设置**不观看哪些赛区** **或者只观看**的比赛.(默认为空)(注意,不观看是包含关系的逻辑,举例:当你设置了lck以后,lck_challengers同样不会观看)(只观看是严格匹配的逻辑)(建议设置,避免观看所有比赛从而被检测)
 4. 可以自行设置多久来查询一次比赛最新信息.(默认600秒)(关闭已经结束的比赛和开启新开始的比赛)
@@ -67,7 +66,7 @@ python -m pip install -r requirements.txt
 19. 可以导出生涯掉落详细信息.
 20. 可以打开**安全模式**,自动过滤小赛区 防止被检测.
 21. 可以显示双方对局比分信息.
-22. 支持ARM64.
+22. 支持Linux ARM64.
 23. 支持Docker环境.
 
 
@@ -91,7 +90,7 @@ exportDrops: False                            # 默认为False,是否需要导�
 briefLogLength: 10                            # 日志简略信息条数.默认为10
 proxy: "你的代理地址"                          # 代理地址，选填，一般用户不用填,除非你知道你在干什么。 例子, "socks://127.0.0.1:20173"
 connectorDropsUrl: "你的webhook链接"           # (支持钉钉,Discord,饭碗警告,企业微信,飞书)具体配置方法见此处https://github.com/Yudaotor/EsportsHelper/wiki/%E6%80%8E%E4%B9%88%E9%85%8D%E7%BD%AE%E6%8E%89%E8%90%BD%E6%8F%90%E9%86%92%3F
-platForm: "windows"                           # 使用平台,默认为Windows,如需使用Linux请在此处进行配置  
+platForm: "mac"                               # 使用平台, 出于自用目的默认为mac,如需使用windows或inux请在此处进行配置修改  
 closeStream: False                            # 省流模式，默认False，关闭直播间的视频流(风险存在,有被拳头检测可能) 
 desktopNotify: False                          # 系统右下角弹窗提示，默认False
 sleepPeriod: ["8-13", "20-23"]                # 休眠时间段，（默认为空）格式为"开始小时-结束小时",在休眠时间段中会关闭观赛网页,待休眠结束后重新打开。区间为左闭合右开。
@@ -102,55 +101,9 @@ countDrops: True                              # 是否检查掉落数
 notifyType: "all"                             # 推送信息的类型筛选,"all"为所有信息推送,"error"为仅推送报错信息,"drops"为仅推送掉落信息
 autoSleep: True                               # (推荐)是否自动休眠,默认True
 debug: False                                  # 是否开启debug模式,开启后在发生异常时会截屏到pics文件夹下,默认False
-arm64: False                                  # 支持在Linux ARM64使用Chromium,需要同时配置platForm: "linux" 并且要有 chromedriver 在路径: "/home/USERNAME/.local/share/undetected_chromedriver/chromedriver", 更多细节见: https://github.com/Yudaotor/EsportsHelper/wiki/The-Way-Using-Chromium-on-ARM64
+arm64: False                                  # 支持在Linux ARM64使用Chromium, apple silicon的mac不需要配置该项，需要同时配置platForm: "linux" 并且要有 chromedriver 在路径: "/home/USERNAME/.local/share/undetected_chromedriver/chromedriver", 更多细节见: https://github.com/Yudaotor/EsportsHelper/wiki/The-Way-Using-Chromium-on-ARM64
 isDockerized: False                           # 只有当在Docker中运行时 配置为True,默认为False.
 ```
-
-### 不观看赛区的配置详解:
-注意,此处是包含关系的逻辑,举例:当你设置了lck以后,lck_challengers同样不会观看  
-可以设置一些赛区不观看,比如次级联赛等(掉落率很低)(推荐)  
-具体赛区名字可以见以下说明(冒号后的即为在配置中输入的赛区名)(注意是小写):  
-Worlds Qualifying Series:wqs  
-LPL:lpl  
-LCK:lck  
-LCK_CHALLENGERS_LEAGUE:lck_challengers_league  
-LEC:lec  
-LCS:lcs  
-TFT:tft_esports  
-LCS_CHALLENGERS:north_american_challenger_league  
-LCS_CHALLENGERS_QUALIFIERS:lcs_challengers_qualifiers  
-LCO:lco  
-VCS:vcs  
-MSI:msi  
-WORLDS:worlds  
-CBLOL:cblol-brazil  
-CBLOL_ACADEMY:cblol_academy  
-LLA:lla  
-LJL:ljl-japan  
-LJL_ACADEMY:ljl_academy   
-EMEA:european-masters  
-PCS:pcs  
-La Ligue Française:lfl  
-NLC:nlc  
-HONOR_DIVISION:honor_division  
-VOLCANO_DISCOVER_LEAGUAGE:volcano_discover_league  
-HITPOINT_MASTERS:hitpoint_masters  
-GOLDEN_LEAGUE:movistar_fiber_golden_league  
-HONOR_LEAGUE:honor_league  
-TCL:turkiye-sampiyonluk-ligi  
-ELITE_SERIES:elite_series  
-SUPERLIGA:superliga  
-ULTRALIGA:ultraliga  
-GREEK_LEAGUE:greek_legends  
-PRIMELEAGUE:primeleague  
-LIGA_MASTER:liga_master_flo  
-LIGA_PORTUGUESA:liga_portuguesa  
-CLARO_GAMING_STARS_LEAGUE:claro_gaming_stars_league  
-ARABIAN_LEAGUE:arabian_league  
-NORTH_REGIONAL_LEAGUE:north_regional_league  
-SOUTH_REGIONAL_LEAGUE:south_regional_league  
-PG_NATIONALS:pg_nationals  
-King's Duel:duelo_de_reyes  
 
 ## By the way
 本项目思路及部分代码来自Poro，感谢。[此处](https://github.com/LeagueOfPoro/EsportsCapsuleFarmer)
