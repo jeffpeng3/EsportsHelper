@@ -1,5 +1,5 @@
 championTeam: T1,
-scheduleUrl: https://lolesports.com/en-SG/leagues/worlds/ignored/first_stand!lta_cross!lta_n,
+scheduleUrl: https://lolesports.com/en-SG/leagues/none/ignored/first_stand!lta_cross!lta_n,
 https://lolesports.com/live/msi|https://lolesports.com/live/msi/riotgames,
 https://lolesports.com/live/lck|https://lolesports.com/live/lck/lck,
 https://lolesports.com/live/lec|https://lolesports.com/live/lec/lec,
