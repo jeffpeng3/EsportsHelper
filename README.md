@@ -8,7 +8,7 @@
 
 **Language**: [English](https://github.com/Yudaotor/EsportsHelper/blob/main/README.EN.md) | [Chinese](https://github.com/Yudaotor/EsportsHelper/blob/main/README.md) | [Spanish](https://github.com/Yudaotor/EsportsHelper/blob/main/README.ES.md)
 # 电竞助手 EsportsHelper
-（本项目随缘更新（会的），too busy！！！）
+（已更新至支持2025年的新赛区）
 通过selenium模拟浏览器来自动观看电竞比赛,网址: [LolEsports](lolesports.com)  
 **避免被拳头检测,请尽量过滤掉小赛区(打开安全模式即可)(以及不要同时观看超过5个比赛!!!!)**  
 哦对了,用的是谷歌浏览器哦 （必须要下一个最新版本谷歌浏览器哦）  
@@ -90,7 +90,7 @@ exportDrops: False                            # 默认为False,是否需要导�
 briefLogLength: 10                            # 日志简略信息条数.默认为10
 proxy: "你的代理地址"                          # 代理地址，选填，一般用户不用填,除非你知道你在干什么。 例子, "socks://127.0.0.1:20173"
 connectorDropsUrl: "你的webhook链接"           # (支持钉钉,Discord,饭碗警告,企业微信,飞书)具体配置方法见此处https://github.com/Yudaotor/EsportsHelper/wiki/%E6%80%8E%E4%B9%88%E9%85%8D%E7%BD%AE%E6%8E%89%E8%90%BD%E6%8F%90%E9%86%92%3F
-platForm: "mac"                               # 使用平台, 出于自用目的默认为mac,如需使用windows或inux请在此处进行配置修改  
+platForm: "mac"                               # 使用平台, 出于自用目的默认为mac,如需使用windows或linux请在此处进行配置修改（全小写）  
 closeStream: False                            # 省流模式，默认False，关闭直播间的视频流(风险存在,有被拳头检测可能) 
 desktopNotify: False                          # 系统右下角弹窗提示，默认False
 sleepPeriod: ["8-13", "20-23"]                # 休眠时间段，（默认为空）格式为"开始小时-结束小时",在休眠时间段中会关闭观赛网页,待休眠结束后重新打开。区间为左闭合右开。
