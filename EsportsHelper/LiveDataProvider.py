@@ -252,6 +252,7 @@ def checkNextMatch():
                         currentTime = datetime.strptime(currentTimeString, '%Y-%m-%dT%H:%M:%SZ')
                         if currentTime < startTime:
                             timeDiff = startTime - currentTime
+                            stats.secondsRemaining = timeDiff.total_seconds()
                             systemTimeDT = getSystemTime()
                             startTime = systemTimeDT + timeDiff
                             niceStartTime = datetime.strftime(startTime, '%m-%d %H:%M')
@@ -268,6 +269,7 @@ def checkNextMatch():
                     currentTime = datetime.strptime(currentTimeString, '%Y-%m-%dT%H:%M:%SZ')
                     if currentTime < startTime:
                         timeDiff = startTime - currentTime
+                        stats.secondsRemaining = timeDiff.total_seconds()
                         systemTimeDT = getSystemTime()
                         startTime = systemTimeDT + timeDiff
                         niceStartTime = datetime.strftime(startTime, '%m-%d %H:%M')
@@ -280,6 +282,7 @@ def checkNextMatch():
             currentTime = datetime.strptime(currentTimeString, '%Y-%m-%dT%H:%M:%SZ')
             if currentTime < startTime:
                 timeDiff = startTime - currentTime
+                stats.secondsRemaining = timeDiff.total_seconds()
                 systemTimeDT = getSystemTime()
                 startTime = systemTimeDT + timeDiff
                 niceStartTime = datetime.strftime(startTime, '%m-%d %H:%M')

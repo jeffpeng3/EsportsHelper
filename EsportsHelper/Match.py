@@ -87,7 +87,7 @@ class Match:
             while config.maxRunHours < 0 or time.time() < endTimePoint:
                 sleep(1)
                 self.driver.switch_to.window(self.mainWindow)
-                stats.lastCheckTime = "[cyan]" + datetime.now().strftime('%H:%M:%S') + "[/cyan]"
+                stats.lastCheckTime = "[cyan]" + datetime.now().strftime('%m-%d %H:%M:%S') + "[/cyan]"
                 stats.nextCheckTime = ""
                 stats.status = _("检查中", color="green")
                 log.info(_log("开始检查..."))
@@ -118,38 +118,40 @@ class Match:
                         liveUrlList = self.getMatchInfo(ignoreBroadCast=False)
                 if config.autoSleep:
                     # When the next game time is correct, go into sleep judgment.
-                    if self.nextMatchHour is not None and self.nextMatchDay is not None:
-                        # If the next match is on the same day as now, but the current time has exceeded the match time, sober up.
-                        if nowTimeDay == self.nextMatchDay and \
-                                nowTimeHour >= self.nextMatchHour:
-                            isSleep = False
-                        # If the next match is on the same day as the current day,
-                        # and there is still over an hour before the match starts,
-                        # and no regions are currently live-streaming, then enter a one-hour sleep mode.
-                        elif nowTimeDay == self.nextMatchDay and \
-                                nowTimeHour < self.nextMatchHour - 1 and \
-                                self.currentWindows == {} and liveUrlList == []:
-                            isSleep = True
-                            newDelay = 3599
-                        # If the next game is the same day as now, but the current time is already an hour before the game, sober up.
-                        elif nowTimeDay == self.nextMatchDay and \
-                                nowTimeHour == self.nextMatchHour - 1:
-                            isSleep = False
-                        # If the next game date is greater than the current date, and there is no live game now,
-                        # and the current time hours are less than 23, sleep is entered with an interval of one hour.
-                        elif nowTimeDay < self.nextMatchDay and self.currentWindows == {} \
-                                and nowTimeHour < 23 and liveUrlList == []:
-                            isSleep = True
-                            newDelay = 3599
-                        elif nowTimeDay < self.nextMatchDay and nowTimeHour >= 23:
-                            isSleep = False
-                        elif (nowTimeDay == 31 or nowTimeDay == 30 or nowTimeDay == 29) and \
-                                (self.nextMatchDay == 1 or self.nextMatchDay == 2 or self.nextMatchDay == 3) \
-                                and nowTimeHour < 23 and liveUrlList == []:
-                            isSleep = True
-                            newDelay = 3599
-                        else:
-                            isSleep = False
+                    if self.nextMatchHour is not None and self.nextMatchDay is not None and stats.secondsRemaining > 1800 and liveUrlList == []:
+                        isSleep = True
+                        newDelay = stats.secondsRemaining - 1799
+                        # # If the next match is on the same day as now, but the current time has exceeded the match time, sober up.
+                        # if nowTimeDay == self.nextMatchDay and \
+                        #         nowTimeHour >= self.nextMatchHour:
+                        #     isSleep = False
+                        # # If the next match is on the same day as the current day,
+                        # # and there is still over an hour before the match starts,
+                        # # and no regions are currently live-streaming, then enter a one-hour sleep mode.
+                        # elif nowTimeDay == self.nextMatchDay and \
+                        #         nowTimeHour < self.nextMatchHour - 1 and \
+                        #         self.currentWindows == {} and liveUrlList == []:
+                        #     isSleep = True
+                        #     newDelay = 3599
+                        # # If the next game is the same day as now, but the current time is already an hour before the game, sober up.
+                        # elif nowTimeDay == self.nextMatchDay and \
+                        #         nowTimeHour == self.nextMatchHour - 1:
+                        #     isSleep = False
+                        # # If the next game date is greater than the current date, and there is no live game now,
+                        # # and the current time hours are less than 23, sleep is entered with an interval of one hour.
+                        # elif nowTimeDay < self.nextMatchDay and self.currentWindows == {} \
+                        #         and nowTimeHour < 23 and liveUrlList == []:
+                        #     isSleep = True
+                        #     newDelay = 3599
+                        # elif nowTimeDay < self.nextMatchDay and nowTimeHour >= 23:
+                        #     isSleep = False
+                        # elif (nowTimeDay == 31 or nowTimeDay == 30 or nowTimeDay == 29) and \
+                        #         (self.nextMatchDay == 1 or self.nextMatchDay == 2 or self.nextMatchDay == 3) \
+                        #         and nowTimeHour < 23 and liveUrlList == []:
+                        #     isSleep = True
+                        #     newDelay = 3599
+                        # else:
+                        #     isSleep = False
                     # Stay awake when the next game time is wrong.
                     else:
                         isSleep = False
@@ -202,14 +204,14 @@ class Match:
                     log.info(
                         f"{_log('下次检查在:')} "
                         f"{(datetime.now() + timedelta(seconds=newDelay)).strftime('%m-%d %H:%M:%S')}")
-                    stats.nextCheckTime = "[cyan]" + (datetime.now() + timedelta(seconds=newDelay)).strftime('%H:%M:%S') + "[/cyan]"
+                    stats.nextCheckTime = "[cyan]" + (datetime.now() + timedelta(seconds=newDelay)).strftime('%m-%d %H:%M:%S') + "[/cyan]"
                     log.info(f"{'=' * 50}")
                     sleep(newDelay)
                     continue
                 elif sleepFlag is True:
                     log.info(_log("休眠时间结束"))
                     stats.info.append(f"{datetime.now().strftime('%H:%M:%S')} " + _("休眠时间结束", color="green"))
-                    stats.lastCheckTime = "[cyan]" + datetime.now().strftime('%H:%M:%S') + "[/cyan]"
+                    stats.lastCheckTime = "[cyan]" + datetime.now().strftime('%m-%d %H:%M:%S') + "[/cyan]"
                     stats.nextCheckTime = ""
                     stats.status = _("检查中", color="green")
                     log.info(_log("开始检查..."))
@@ -326,7 +328,7 @@ class Match:
                     f"{_log('下次检查在:')} "
                     f"{(datetime.now() + timedelta(seconds=newDelay)).strftime('%m-%d %H:%M:%S')}")
                 log.info(f"{'=' * 50}")
-                stats.nextCheckTime = "[cyan]" + (datetime.now() + timedelta(seconds=newDelay)).strftime('%H:%M:%S') + "[/]"
+                stats.nextCheckTime = "[cyan]" + (datetime.now() + timedelta(seconds=newDelay)).strftime('%m-%d %H:%M:%S') + "[/]"
                 stats.status = _("在线", color="bold green")
                 sleep(newDelay)
             if time.time() >= endTimePoint and config.maxRunHours != -1 and config.platForm == "windows":
