@@ -1,5 +1,6 @@
 import os
 import socket
+import shutil
 
 import undetected_chromedriver as uc
 from rich import print
@@ -132,6 +133,8 @@ def createWebdriver():
         A uc.Chrome instance.
     """
     customPath = ".\\driver"
+    if os.path.exists(customPath):
+        shutil.rmtree(customPath)
     chromeDriverManager = ChromeDriverManager(cache_manager=DriverCacheManager(customPath))
     if config.isDockerized:
         driverPath = "/undetected_chromedriver/chromedriver"
@@ -145,9 +148,11 @@ def createWebdriver():
                     return
             else:
                 customPath = "driver"
+                if os.path.exists(customPath):
+                    shutil.rmtree(customPath)
                 chromeDriverManager = ChromeDriverManager(cache_manager=DriverCacheManager(customPath))
                 driverPath = chromeDriverManager.install()
-        elif config.platForm in ["windows", "mac"]:
+        elif config.platForm == "windows":
             driverPath = chromeDriverManager.install()
         else:
             log.error(_("不支持的操作系统"))
