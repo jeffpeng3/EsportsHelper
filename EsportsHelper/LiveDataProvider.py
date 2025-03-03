@@ -48,7 +48,6 @@ def fetchLeaguesId():
             stats.leaguesIdDict[league["id"]] = league["name"]
             stats.leaguesSlugDict[league["slug"]] = league["id"]
         log.info(_log("获取赛区ID成功"))
-        log.info(stats.leaguesSlugDict)
         return True
     except Exception:
         log.error(_log("获取赛区ID失败"))
