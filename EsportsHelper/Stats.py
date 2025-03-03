@@ -13,6 +13,7 @@ class Stats:
         self.initWatchHour = "-1"
         self.currentWatchHour = "-1"
         self.leaguesIdDict = {}
+        self.leaguesSlugDict = {}
         self.lastDropCheckTime = int(datetime.now().timestamp() * 1e3)
         self.todayDrops = 0
         self.liveRegions = []
