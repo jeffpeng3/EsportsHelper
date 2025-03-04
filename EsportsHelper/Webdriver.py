@@ -48,7 +48,7 @@ def getDriverVersion(chromeDriverManager):
     return version
 
 
-def addWebdriverOptions(options):
+def addWebdriverOptions(options, version):
     """
     Adds options to a Chrome webdriver instance.
 
@@ -108,9 +108,9 @@ def addWebdriverOptions(options):
     if config.headless and not config.isDockerized:
         options.add_argument("--headless=new")
 
-        windowsAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/118.0.2088.88"
-        macAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
-        linuxAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+        windowsAgent = f"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{version}.0.0.0 Safari/537.36"
+        macAgent = f"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{version}.0.0.0 Safari/537.36"
+        linuxAgent = f"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{version}.0.0.0 Safari/537.36"
 
         if config.platForm == "windows":
             userAgent = windowsAgent
@@ -120,7 +120,7 @@ def addWebdriverOptions(options):
             userAgent = linuxAgent
         else:
             # Default to one agent, just in case
-            userAgent = macAgent
+            userAgent = windowsAgent
 
         options.add_argument(f'user-agent={userAgent}')
     return options
@@ -158,10 +158,10 @@ def createWebdriver():
         else:
             log.error(_("不支持的操作系统"))
 
-    options = addWebdriverOptions(uc.ChromeOptions())
     print(_("正在准备中...", color="yellow"))
     log.info(_log("正在准备中..."))
     version = getDriverVersion(chromeDriverManager)
+    options = addWebdriverOptions(uc.ChromeOptions(), version)
 
     kwargs = {
         "options": options,
