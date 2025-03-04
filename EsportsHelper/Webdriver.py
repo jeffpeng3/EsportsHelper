@@ -87,6 +87,7 @@ def addWebdriverOptions(options):
     options.add_argument('--disable-audio-output')
     options.add_argument('--autoplay-policy=no-user-gesture-required')
     # options.add_argument("--disable-gpu")
+    options.add_argument('--enable-features=WebContentsForceDark')
     options.debugger_address = "127.0.0.1:" + str(stats.debugPort)
     options.set_capability("goog:loggingPrefs", {
         'performance': 'ALL'
