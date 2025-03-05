@@ -106,20 +106,15 @@ def spaceNumber(content, number):
 
 
 def formatLeagueName(name):
-    if "LJL-JAPAN" == name:
-        name = "LJL"
-    elif "LCK_CHALLENGERS_LEAGUE" == name:
-        name = "LCK_CL"
-    elif "NORTH_AMERICAN_CHALLENGER_LEAGUE" == name:
-        name = "LCS_CL"
-    elif "CBLOL-BRAZIL" == name:
-        name = "CBLOL"
-    elif "EUROPEAN-MASTERS" == name:
-        name = "EMEA_MASTERS"
-    elif "EUROPEAN_MASTERS" == name:
-        name = "EMEA_MASTERS"
+    if "LTA_S" == name:
+        name = "LTAS"
+    elif "LTA_N" == name:
+        name = "LTAN"
+    elif "LTA_CROSS" == name:
+        name = "LTAX"
+    elif "FIRST_STAND" == name:
+        name = "FS"
     elif "TFT" in name:
         name = "TFT"
-    elif "LCS_CHALLENGERS_QUALIFIERS" == name:
-        name = "LCS_CLQ"
     return name
+
