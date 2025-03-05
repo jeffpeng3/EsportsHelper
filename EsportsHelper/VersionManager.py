@@ -8,7 +8,7 @@ from EsportsHelper.Stats import stats
 
 _ = i18n.getText
 _log = i18n.getLog
-LATEST_URL = "https://github.com/Yudaotor/EsportsHelper/releases/latest"
+LATEST_URL = "https://github.com/wesselyang/EsportsHelper/releases/latest"
 
 
 def getLatestVersion():
@@ -18,9 +18,14 @@ def getLatestVersion():
     Returns:
         str: The latest version number. If the fetch fails, "0.0.0" is returned.
     """
+    proxies = {}
+    if config.proxy.startswith("http"):
+        proxies = {"http": config.proxy,
+                    "https": config.proxy
+        }
     try:
         latestTagResponse = req.get(
-            "https://api.github.com/repos/Yudaotor/EsportsHelper/releases/latest")
+            "https://api.github.com/repos/wesselyang/EsportsHelper/releases/latest", proxies=proxies)
         if 'application/json' in latestTagResponse.headers.get('Content-Type', ''):
             latestTagJson = latestTagResponse.json()
             if "tag_name" in latestTagJson:

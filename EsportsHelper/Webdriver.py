@@ -1,11 +1,16 @@
 import os
 import socket
 import shutil
+import requests
+import urllib3
+from requests import Response
 
 import undetected_chromedriver as uc
 from rich import print
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.driver_cache import DriverCacheManager
+from webdriver_manager.core.download_manager import WDMDownloadManager
+from webdriver_manager.core.http import HttpClient
 
 from EsportsHelper.Config import config
 from EsportsHelper.Logger import log
@@ -14,6 +19,16 @@ from EsportsHelper.Stats import stats
 
 _ = i18n.getText
 _log = i18n.getLog
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+class CustomHttpClient(HttpClient):
+    def get(self, url, params=None) -> Response:
+        proxies = {}
+        if config.proxy.startswith('http'):
+            proxies={'http': config.proxy,
+                     'https': config.proxy
+            }
+        return requests.get(url, params, proxies=proxies, verify=False)
 
 
 def checkPort(ip, port):
@@ -136,7 +151,9 @@ def createWebdriver():
     customPath = ".\\driver"
     if os.path.exists(customPath):
         shutil.rmtree(customPath)
-    chromeDriverManager = ChromeDriverManager(cache_manager=DriverCacheManager(customPath))
+    http_client = CustomHttpClient()
+    download_manager = WDMDownloadManager(http_client)
+    chromeDriverManager = ChromeDriverManager(cache_manager=DriverCacheManager(customPath), download_manager=download_manager)
     if config.isDockerized:
         driverPath = "/undetected_chromedriver/chromedriver"
     else:
@@ -151,7 +168,7 @@ def createWebdriver():
                 customPath = "driver"
                 if os.path.exists(customPath):
                     shutil.rmtree(customPath)
-                chromeDriverManager = ChromeDriverManager(cache_manager=DriverCacheManager(customPath))
+                chromeDriverManager = ChromeDriverManager(cache_manager=DriverCacheManager(customPath), download_manager=download_manager)
                 driverPath = chromeDriverManager.install()
         elif config.platForm == "windows":
             driverPath = chromeDriverManager.install()

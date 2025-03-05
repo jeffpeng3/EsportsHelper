@@ -39,6 +39,7 @@ def getGithubFile():
 
     """
     try:
+        proxies = {}
         overrides = {}
         championTeam = ""
         scheduleUrl = ""
@@ -57,9 +58,13 @@ def getGithubFile():
         req = requests.session()
         headers = {'Content-Type': 'text/plain; charset=utf-8',
                    'Connection': 'close'}
+        if config.proxy.startswith('http'):
+            proxies = {'http': config.proxy,
+                       'https': config.proxy,
+            }
         try:
             remoteGithubFile = req.get(
-                "https://raw.githubusercontent.com/wesselyang/EsportsHelper/main/override.txt", headers=headers)
+                "https://raw.githubusercontent.com/wesselyang/EsportsHelper/main/override.txt", headers=headers, proxies=proxies)
         except Exception:
             log.error(_log("从Github获取参数文件失败, 将尝试从Gitee获取"))
             remoteGithubFile = req.get(
