@@ -2,7 +2,6 @@ from traceback import format_exc
 
 from EsportsHelper.I18n import i18n
 from EsportsHelper.Logger import log
-from EsportsHelper.Utils import formatLeagueName
 
 _ = i18n.getText
 _log = i18n.getLog
@@ -104,3 +103,23 @@ def spaceNumber(content, number):
         return number - length
     else:
         return 1
+
+
+def formatLeagueName(name):
+    if "LJL-JAPAN" == name:
+        name = "LJL"
+    elif "LCK_CHALLENGERS_LEAGUE" == name:
+        name = "LCK_CL"
+    elif "NORTH_AMERICAN_CHALLENGER_LEAGUE" == name:
+        name = "LCS_CL"
+    elif "CBLOL-BRAZIL" == name:
+        name = "CBLOL"
+    elif "EUROPEAN-MASTERS" == name:
+        name = "EMEA_MASTERS"
+    elif "EUROPEAN_MASTERS" == name:
+        name = "EMEA_MASTERS"
+    elif "TFT" in name:
+        name = "TFT"
+    elif "LCS_CHALLENGERS_QUALIFIERS" == name:
+        name = "LCS_CLQ"
+    return name
