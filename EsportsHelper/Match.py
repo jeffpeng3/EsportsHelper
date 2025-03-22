@@ -153,6 +153,9 @@ class Match:
                         # else:
                         #     isSleep = False
                     # Stay awake when the next game time is wrong.
+                    elif self.nextMatchDay is None:
+                        isSleep = True
+                        newDelay = 86399
                     else:
                         isSleep = False
                 else:
