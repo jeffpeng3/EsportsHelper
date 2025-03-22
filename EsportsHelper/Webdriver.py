@@ -57,7 +57,7 @@ def getDriverVersion(chromeDriverManager):
          or a default version of 108 if it is unable to retrieve the version number.
     """
     try:
-        version = int(chromeDriverManager.driver.get_version().split(".")[0])
+        version = int(chromeDriverManager.driver.get_latest_release_version().split(".")[0])
     except Exception:
         version = 108
     return version
