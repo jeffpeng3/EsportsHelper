@@ -46,7 +46,7 @@ RUN mkdir -p /undetected_chromedriver && \
 
 # Clone the EsportsHelper repository
 RUN mkdir -p /esportshelper && \
-    git clone https://github.com/Yudaotor/EsportsHelper /esportshelper && \
+    git clone https://github.com/jeffpeng3/EsportsHelper /esportshelper && \
     chmod -R 777 /esportshelper
 
 # Set permissions for chromium
