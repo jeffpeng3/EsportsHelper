@@ -103,6 +103,7 @@ def addWebdriverOptions(options, version):
     options.add_argument('--autoplay-policy=no-user-gesture-required')
     options.add_argument("--disable-gpu")
     options.add_argument('--enable-features=WebContentsForceDark')
+    options.add_argument("--disable-dev-shm-usage")
     options.debugger_address = "127.0.0.1:" + str(stats.debugPort)
     options.set_capability("goog:loggingPrefs", {
         'performance': 'ALL'
@@ -155,8 +156,8 @@ def createWebdriver():
     download_manager = WDMDownloadManager(http_client)
     chromeDriverManager = ChromeDriverManager(cache_manager=DriverCacheManager(customPath), download_manager=download_manager)
     if config.isDockerized:
-        driverPath = "/undetected_chromedriver/chromedriver"
-    else:
+    #     driverPath = "/undetected_chromedriver/chromedriver"
+    # else:
         if config.platForm in ["linux", "mac"]:
             if config.arm64:
                 username = os.getlogin()
