@@ -1,7 +1,7 @@
-FROM ghcr.io/linuxserver/baseimage-kasmvnc:alpine318
+FROM ghcr.io/linuxserver/baseimage-kasmvnc:alpine320
 
-LABEL build_version="1.3.1"
-LABEL maintainer="Pablo Duval <pablo@redroot.me>"
+LABEL build_version="2.4.0"
+LABEL maintainer="Pablo Duval <RedrootDEV>"
 
 # Install necessary dependencies
 RUN \
@@ -56,7 +56,7 @@ RUN chmod -R 777 /usr/bin/chromium
 WORKDIR /esportshelper
 
 # Install Python dependencies
-RUN pip install -r requirements.txt
+RUN pip install --break-system-packages -r requirements.txt
 
 # Expose port 3000
 EXPOSE 3000
