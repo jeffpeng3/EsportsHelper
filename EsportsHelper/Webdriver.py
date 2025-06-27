@@ -156,8 +156,8 @@ def createWebdriver():
     download_manager = WDMDownloadManager(http_client)
     chromeDriverManager = ChromeDriverManager(cache_manager=DriverCacheManager(customPath), download_manager=download_manager)
     if config.isDockerized:
-    #     driverPath = "/undetected_chromedriver/chromedriver"
-    # else:
+        driverPath = "/undetected_chromedriver/chromedriver"
+    else:
         if config.platForm in ["linux", "mac"]:
             if config.arm64:
                 username = os.getlogin()
