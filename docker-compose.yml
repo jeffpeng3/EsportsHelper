@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # Last Update: 08/02/2024 (2.3.2)
   esportshelper:
-    image: redr00t/esportshelper:latest
+    image: ghcr.io/jeffpeng3/esportshelper:latest
     container_name: esportshelper
     restart: unless-stopped
     security_opt:
@@ -14,6 +14,7 @@ services:
     volumes:
       - ./docker-config:/config
       - ./config.yaml:/esportshelper/config.yaml
+      - ./cookies.json:/esportshelper/cookies.json
     ports:
       - 3000:3000
     shm_size: "2gb"

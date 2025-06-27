@@ -1,5 +1,5 @@
 delay: 600                  # 每次检查的时间间隔，单位为秒(默认为600秒)(每次检测时间会在你设置的时延0.8-1.5倍之间随机波动) / Time interval for each check in seconds (600 seconds by default). Each check time will randomly range between 0.8 and 1.5 times the time delay you set
-headless: False             # 设置为True时，程序会在后台运行，否则会打开浏览器窗口(默认为False) / # When set to True, the program will run in the background; otherwise it will open a browser window (False by default)
+headless: True             # 设置为True时，程序会在后台运行，否则会打开浏览器窗口(默认为False) / # When set to True, the program will run in the background; otherwise it will open a browser window (False by default)
 username: "username"        # 必填，账号 / Required field, username
 password: "密码"            # 必填，密码 / Required field, password
 connectorDropsUrl: ""       # webhook提醒链接，不填则不提醒(支持discord,企业微信,钉钉,饭碗警告,飞书) / Webhook URL to send notifications (supported: Discord, WeCom, DingTalk, Fwalert, Feishu)

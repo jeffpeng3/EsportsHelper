@@ -26,7 +26,7 @@ RUN chmod +x /defaults/autostart
 # Create a restart script
 RUN echo '#!/bin/bash' > /defaults/restart_esportshelper.sh
 RUN echo 'pkill -f "python3 main.py"' >> /defaults/restart_esportshelper.sh
-RUN echo 'cd /esportshelper && python3 main.py' >> /defaults/restart_esportshelper.sh
+RUN echo 'cd /esportshelper && python3 -u main.py' >> /defaults/restart_esportshelper.sh
 RUN chmod +x /defaults/restart_esportshelper.sh
 
 # Create menu.xml
