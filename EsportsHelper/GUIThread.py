@@ -135,7 +135,6 @@ class GUIThread(Thread):
                 while True:
                     sessionDropInfo = getSessionDropInfo()
                     webhookInfo = getWebhookInfo()
-                    sessionDropNumber = len(stats.currentDropsList) - len(stats.initDropsList)
                     todayDropsInfo = _("今日掉宝", "bold yellow") + f":{stats.todayDrops}"
                     layout["upper"]["banner"]["drop"].update(Panel(sessionDropInfo,
                                                                    title=_('运行期间掉宝', color="bold yellow"),

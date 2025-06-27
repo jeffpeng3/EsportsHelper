@@ -9,12 +9,11 @@ import requests
 from EsportsHelper.Config import config
 from EsportsHelper.GUIThread import GUIThread
 from EsportsHelper.I18n import i18n
-from EsportsHelper.LiveDataProvider import fetchWatchRegions
 from EsportsHelper.Logger import log
 from EsportsHelper.LoginHandler import LoginHandler
 from EsportsHelper.Match import Match
 from EsportsHelper.Stats import stats
-from EsportsHelper.Utils import getLolesportsWeb, sysQuit, formatExc, acceptCookies, info, debugScreen
+from EsportsHelper.Utils import SCHEDULE_URL, getLolesportsWeb, sysQuit, formatExc, acceptCookies, info, debugScreen
 from EsportsHelper.Webdriver import createWebdriver
 from rich import print
 from selenium.common.exceptions import WebDriverException
@@ -148,7 +147,7 @@ def login(locks):
                         driver.add_cookie(cookie)
                     driver.refresh()
                     tryLoginTimes -= 1
-                    driver.get("https://lolesports.com/")
+                    driver.get(SCHEDULE_URL)
                     sleep(5)
                 elif loginHandler.automaticLogIn(config.username, config.password):
                     pass

@@ -156,8 +156,8 @@ def errorNotify(error):
                     embed = {
                         "title": f"{_log('警告: 停止获取Drop')}",
                         "description": f"{error}",
-                        "image": {"url": f""},
-                        "thumbnail": {"url": f""},
+                        "image": {"url": ""},
+                        "thumbnail": {"url": ""},
                         "color": 6676471,
                     }
                     params = {
@@ -466,7 +466,7 @@ def matchStatusCode(expected, response):
         statusCode = response.status_code
         url = response.request.url
         response.close()
-        log.error(_log(f"请求失败: ") + f"{url} {_log('状态码:')} {statusCode}")
+        log.error(_log("请求失败: ") + f"{url} {_log('状态码:')} {statusCode}")
         return False
     return True
 
@@ -528,7 +528,7 @@ def checkRewardPage(driver, isInit=False):
                 infos = ""
                 for league in leaguesList:
                     infos += f"{league}:{_log('总掉宝')}:{cappedDropDict.get(league, 0) + uncappedDropsDict.get(league, 0)}|{_log('普通掉宝')}:{uncappedDropsDict.get(league, 0)}|{_log('稀有掉宝')}:{cappedDropDict.get(league, 0)}\n"
-                with open(strftime("%Y%m%d-%H-%M-%S-") + f'totalDrops.txt', 'a+', encoding="utf-8") as f:
+                with open(strftime("%Y%m%d-%H-%M-%S-") + 'totalDrops.txt', 'a+', encoding="utf-8") as f:
                     f.write(infos)
                 log.info(_log("写入总掉落文件成功"))
                 stats.info.append(f"{datetime.now().strftime('%H:%M:%S')} {_('写入总掉落文件成功', color='red')}")

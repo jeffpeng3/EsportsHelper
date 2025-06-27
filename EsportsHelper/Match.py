@@ -8,7 +8,7 @@ from traceback import format_exc
 from retrying import retry
 
 from EsportsHelper.Drop import Drop
-from EsportsHelper.LiveDataProvider import fetchLiveMatches, checkNextMatch, fetchWatchRegions, fetchLeaguesId
+from EsportsHelper.LiveDataProvider import fetchLiveMatches, checkNextMatch, fetchLeaguesId
 from EsportsHelper.Logger import log
 from EsportsHelper.Config import config
 from EsportsHelper.NetworkHandler import NetworkHandler
@@ -23,7 +23,6 @@ from EsportsHelper.Utils import (OVERRIDES,
                                  sortLiveList, updateLiveRegions, updateLiveRegionsColor,
                                  updateLiveDefinition, formatLeagueName, checkRewardPage, setTodayDropsNumber, debugScreen, errorNotify)
 from EsportsHelper.YouTube import YouTube
-from rich import print
 from selenium.common import NoSuchElementException, NoSuchWindowException
 from selenium.webdriver.common.by import By
 from EsportsHelper.I18n import i18n
@@ -55,7 +54,7 @@ class Match:
         """
         try:
             while stats.leaguesIdDict == {}:
-                t = fetchLeaguesId()
+                fetchLeaguesId()
             sleepFlag = False
             isSleep = False
             openDatetime = datetime.now()
@@ -671,9 +670,6 @@ class Match:
             nextMatchLeague = self.driver.find_element(
                 by=By.CSS_SELECTOR,
                 value="div.divider.future + div.EventDate + div.EventMatch > div > div.league > div.name").text
-            nextMatchBO = self.driver.find_element(
-                by=By.CSS_SELECTOR,
-                value="div.divider.future + div.EventDate + div.EventMatch > div > div.league > div.strategy").text
             if nextMatchAMOrPM == "PM" and nextMatchTime != "12":
                 nextMatchStartHour = int(nextMatchTime) + 12
             elif nextMatchAMOrPM == "AM" and nextMatchTime == "12":
@@ -682,7 +678,6 @@ class Match:
                 nextMatchStartHour = int(nextMatchTime)
             self.nextMatchHour = nextMatchStartHour
             self.nextMatchDay = nextMatchDay
-            invalidMatch = nextMatchLeague
             nowHour = int(time.localtime().tm_hour)
             nowMonth = time.strftime("%b", time.localtime())
             nowDay = int(time.strftime("%d", time.localtime()))
@@ -700,9 +695,6 @@ class Match:
                 nextMatchLeague = self.driver.find_element(
                     by=By.CSS_SELECTOR,
                     value="div.divider.future + div.EventDate + div.EventMatch ~ div.EventMatch > div > div.league > div.name").text
-                nextMatchBO = self.driver.find_element(
-                    by=By.CSS_SELECTOR,
-                    value="div.divider.future + div.EventDate + div.EventMatch ~ div.EventMatch > div > div.league > div.strategy").text
 
                 if nextMatchTime == "" or nextMatchLeague == "":
                     nextMatchTime = self.driver.find_element(
@@ -714,9 +706,6 @@ class Match:
                     nextMatchLeague = self.driver.find_element(
                         by=By.CSS_SELECTOR,
                         value="div.single.future.event > div.league > div.name").text
-                    nextMatchBO = self.driver.find_element(
-                        by=By.CSS_SELECTOR,
-                        value="div.single.future.event > div.league > div.strategy").text
                 stats.nextMatch = f"{nextMatchLeague}|" \
                                   f"{timeTrans(nextMatchTime + nextMatchAMOrPM)}"
 
@@ -731,3 +720,4 @@ class Match:
             log.error("WEB " + _log("获取下一场比赛时间失败"))
             log.error(formatExc(format_exc()))
             stats.info.append(f"{datetime.now().strftime('%H:%M:%S')} WEB {_('获取下一场比赛时间失败', color='red')}")
+
