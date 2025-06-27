@@ -86,7 +86,6 @@ class GUIThread(Thread):
                 Layout(name="table", renderable=setAccountTable(0))
             )
 
-            is_dockerized = config.isDockerized
             sessionDropInfo = getSessionDropInfo()
             configInfo = getConfigInfo()
             webhookInfo = getWebhookInfo()

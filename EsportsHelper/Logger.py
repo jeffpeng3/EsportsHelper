@@ -4,6 +4,8 @@ from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from rich import print
 
+# 延遲 import config 以避免循環引用
+
 FILE_SIZE = 1024 * 1024 * 100
 BACKUP_COUNT = 5
 PROGRAM_NAME = "EsportsHelper"
@@ -50,7 +52,41 @@ class Logger:
         return logg
 
 
-log = Logger().createLogger()
+class LoggerWrapper:
+    def __init__(self, logger):
+        self._logger = logger
+
+    def info(self, msg, *args, **kwargs):
+        self._logger.info(msg, *args, **kwargs)
+        try:
+            from EsportsHelper.Config import config
+            if getattr(config, "isDockerized", False):
+                print(msg)
+        except Exception:
+            pass
+
+    def error(self, msg, *args, **kwargs):
+        self._logger.error(msg, *args, **kwargs)
+        try:
+            from EsportsHelper.Config import config
+            if getattr(config, "isDockerized", False):
+                print(f"[red]{msg}[/red]")
+        except Exception:
+            pass
+
+    def warning(self, msg, *args, **kwargs):
+        self._logger.warning(msg, *args, **kwargs)
+        try:
+            from EsportsHelper.Config import config
+            if getattr(config, "isDockerized", False):
+                print(f"[yellow]{msg}[/yellow]")
+        except Exception:
+            pass
+
+    def __getattr__(self, name):
+        return getattr(self._logger, name)
+
+log = LoggerWrapper(Logger().createLogger())
 
 
 def delimiterLine(color="bold yellow"):

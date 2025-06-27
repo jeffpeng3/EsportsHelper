@@ -14,3 +14,4 @@ debug: False
 countDrops: True
 maxRunHours: -1
 platForm: "linux"
+isDockerized: True

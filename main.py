@@ -199,9 +199,13 @@ def main():
     sleep(3)
     refreshLock = Lock()
     locks = {"refreshLock": refreshLock}
-    guiThread = GUIThread(locks)
-    guiThread.daemon = True
-    guiThread.start()
+    # 若 config.isDockerized 為 True 則不啟動 GUI thread
+    if not getattr(config, "isDockerized", False):
+        guiThread = GUIThread(locks)
+        guiThread.daemon = True
+        guiThread.start()
+    else:
+        print("[INFO] Docker 模式偵測到，未啟動 GUI thread。")
 
     switchLanguage()
     acceptCookies(driver=driver)
