@@ -25,7 +25,7 @@ class Stats:
         self.banner = []
         self.sessionDropsDict = {}
         self.nextMatch = ""
-        self.watchRegion = ""
+        # self.watchRegion = ""
         self.secondsRemaining = ""
         self.debugPort = 9222
 

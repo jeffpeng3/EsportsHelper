@@ -225,12 +225,12 @@ class Match:
 
                 # Get the number of drops and total hours watched
                 if config.countDrops:
-                    watchRegion = fetchWatchRegions()
-                    if watchRegion != "ERROR":
-                        stats.watchRegion = watchRegion
-                    else:
-                        stats.watchRegion = _log("未知")
-                    log.info(f"{_log('观看属地')}: {stats.watchRegion}")
+                    # watchRegion = fetchWatchRegions()
+                    # if watchRegion != "ERROR":
+                    #     stats.watchRegion = watchRegion
+                    # else:
+                    #     stats.watchRegion = _log("未知")
+                    # log.info(f"{_log('观看属地')}: {stats.watchRegion}")
                     self.driver.switch_to.window(self.rewardWindow)
                     checkRewardPage(self.driver, isInit=False)
                     setTodayDropsNumber()

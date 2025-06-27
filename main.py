@@ -94,12 +94,12 @@ def initWebdriver():
 def switchLanguage():
     # Open lolesports page
     try:
-        watchRegion = fetchWatchRegions()
-        if watchRegion != "ERROR":
-            stats.watchRegion = watchRegion
-        else:
-            stats.watchRegion = _log("未知")
-        log.info(f"{_log('观看属地')} {stats.watchRegion}")
+        # watchRegion = fetchWatchRegions()
+        # if watchRegion != "ERROR":
+        #     stats.watchRegion = watchRegion
+        # else:
+        #     stats.watchRegion = _log("未知")
+        # log.info(f"{_log('观看属地')} {stats.watchRegion}")
         getLolesportsWeb(driver)
     except Exception:
         log.error(
@@ -137,7 +137,20 @@ def login(locks):
         tryLoginTimes = 4
         while not driver.find_elements(by=By.CSS_SELECTOR, value="div.riotbar-summoner-name") and tryLoginTimes > 0:
             try:
-                if loginHandler.automaticLogIn(config.username, config.password):
+                driver.get("https://auth.riotgames.com")
+                if config.cookieFile is not None:
+                    with open(config.cookieFile, "r", encoding="utf-8") as f:
+                        cookies = json.load(f)
+                    log.info(_log("使用cookies登录"))
+                    for cookie in cookies:
+                        if cookie["sameSite"] not in ["Strict", "Lax", "None"]:
+                            cookie["sameSite"] = "None"
+                        driver.add_cookie(cookie)
+                    driver.refresh()
+                    tryLoginTimes -= 1
+                    driver.get("https://lolesports.com/")
+                    sleep(5)
+                elif loginHandler.automaticLogIn(config.username, config.password):
                     pass
                 else:
                     tryLoginTimes = tryLoginTimes - 1

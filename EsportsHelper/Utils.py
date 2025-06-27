@@ -64,7 +64,7 @@ def getGithubFile():
             }
         try:
             remoteGithubFile = req.get(
-                "https://raw.githubusercontent.com/wesselyang/EsportsHelper/main/override.txt", headers=headers, proxies=proxies)
+                "https://raw.githubusercontent.com/jeffpeng3/EsportsHelper/main/override.txt", headers=headers, proxies=proxies)
         except Exception:
             log.error(_log("从Github获取参数文件失败, 将尝试从Gitee获取"))
             remoteGithubFile = req.get(

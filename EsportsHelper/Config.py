@@ -97,6 +97,7 @@ class Config:
             self.mode = configFile.get("mode", "safe")
             self.arm64 = configFile.get("arm64", False)
             self.isDockerized = configFile.get("isDockerized", False)
+            self.cookieFile = configFile.get("cookieFile", None)
             self.format()
         except (ParserError, KeyError, ScannerError):
             log.error(_log('配置文件格式错误'))
@@ -147,7 +148,7 @@ class Config:
                 log.error(_log("语言配置错误,已恢复zh_CN默认值"))
         self.disWatchMatches = [match.lower() for match in self.disWatchMatches if match != ""]
 
-        if self.userDataDir == "" and self.username == "账号用户名" or self.password == "密码":
+        if self.cookieFile is None and self.userDataDir == "" and (self.username == "账号用户名" or self.password == "密码"):
             log.error(_log("配置文件中没有账号密码信息"))
             stats.info.append(_("配置文件中没有账号密码信息", color="red"))
 
