@@ -196,6 +196,7 @@ def main():
     formattedOpenDatetime = openDatetime.strftime("%Y-%m-%d %H:%M:%S")
     stats.banner.append(f"{_('开始时间: ', color='green')}" + formattedOpenDatetime)
     initWebdriver()
+    _log("EsportsHelper 初始化成功")
     sleep(3)
     refreshLock = Lock()
     locks = {"refreshLock": refreshLock}
