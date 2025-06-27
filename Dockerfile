@@ -34,7 +34,7 @@ RUN echo '<?xml version="1.0" encoding="utf-8"?>' > /defaults/menu.xml
 RUN echo '<openbox_menu xmlns="http://openbox.org/3.4/menu">' >> /defaults/menu.xml
 RUN echo '  <menu id="root-menu" label="MENU">' >> /defaults/menu.xml
 RUN echo '    <item label="Terminal" icon="/usr/share/pixmaps/xterm-color_48x48.xpm"><action name="Execute"><command>/usr/bin/xterm</command></action></item>' >> /defaults/menu.xml
-RUN echo '    <item label="Restart EsportsHelper" icon="/usr/share/pixmaps/xterm-color_48x48.xpm"><action name="Execute"><command>/defaults/restart_esportshelper.sh/command></action></item>' >> /defaults/menu.xml
+RUN echo '    <item label="Restart EsportsHelper" icon="/usr/share/pixmaps/xterm-color_48x48.xpm"><action name="Execute"><command>/defaults/restart_esportshelper.sh</command></action></item>' >> /defaults/menu.xml
 RUN echo '    <item label="Chromium" icon="/usr/share/icons/hicolor/48x48/apps/chromium.png"><action name="Execute"><command>/usr/bin/chromium-browser</command></action></item>' >> /defaults/menu.xml
 RUN echo '  </menu>' >> /defaults/menu.xml
 RUN echo '</openbox_menu>' >> /defaults/menu.xml
