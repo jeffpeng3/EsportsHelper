@@ -178,7 +178,9 @@ def createWebdriver():
     print(_("正在准备中...", color="yellow"))
     log.info(_log("正在准备中..."))
     version = getDriverVersion(chromeDriverManager)
+    log.info(_log("取得版本..."))
     options = addWebdriverOptions(uc.ChromeOptions(), version)
+    log.info(_log("取得選項..."))
 
     kwargs = {
         "options": options,
@@ -187,6 +189,7 @@ def createWebdriver():
         "browser_executable_path": config.chromePath if config.chromePath else None,
         "user_data_dir": config.userDataDir if config.userDataDir else None,
     }
+    log.info(_log("正在创建浏览器实例..."))
     return uc.Chrome(**{k: v for k, v in kwargs.items() if v})
 
 
